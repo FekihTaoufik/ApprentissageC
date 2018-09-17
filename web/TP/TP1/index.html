@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TP1</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="4"></th>
+                <th rowspan="4" class="style1">IUT</th>
+            </tr>
+            <tr>
+                <td colspan="2" class="center bold style1">UFR Sciences</td>
+                <th rowspan="3" class="style1">Polytech Nice Sophia</th>
+            </tr>
+            <tr>
+                <td colspan="2" class="center bold style1">Département Informatique</td>
+
+            </tr>
+            <tr>
+                <td class="center bold style1">IUP MIAGE</td>
+                <td class="invisible"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="invisible"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+            </tr>
+            <tr>
+                <td rowspan="3" class="style1">BAC +8</td>
+                <td class="empty"></td>
+                <td colspan="3" rowspan="3" class="style3">Doctorat / ED-STIC</td>
+            </tr>
+            <tr>
+                <td class="empty"></td>
+            </tr>
+
+            <tr>
+                <td class="empty"></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="style1">BAC +5</td>
+                <td class="empty"></td>
+                <td rowspan="2" class="style2">Master Miage</td>
+                <td rowspan="2" class="style2">Master Informatique</td>
+                <td rowspan="4" class="style2">Ingénieur Informatique</td>
+            </tr>
+            <tr>
+                <td class="empty"></td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="style1">BAC +3</td>
+            </tr>
+            <tr>
+                <td class="style1">LPRO</td>
+                <td class="style1">parcours Miage</td>
+                <td rowspan="3" class="style1">Licence Informatique</td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="style1">DUT</td>
+                <td class="style1">DUT IG</td>
+                <td rowspan="2" class="style1">Cycle Préparatoire</td>
+            </tr>
+            <tr>
+                <td class="empty exception"></td>
+            </tr>
+            <tr>
+                <td class="invisible"></td>
+                <td colspan="4" class="style1">BAC</td>
+            </tr>
+        </tbody>
+        <caption style="caption-side: bottom;">tableau des étudies en info à l'UNS</caption>
+    </table>
+    <style>
+        body {
+            font-family: 'Open sans';
+        }
+
+        table td,
+        table th {
+            padding: 3px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .invisible {
+            border: none;
+        }
+
+        .empty.exception {
+            border-top: 0px;
+        }
+
+        .empty {
+            border: 1px dashed black;
+        }
+
+        .style1,
+        .style2,
+        .style3 {
+            border-radius: .5em;
+            color: white;
+            border: 2px solid rgb(79, 129, 189);
+            text-align: center;
+        }
+
+        .style3 {
+            background-color: rgb(128, 100, 161);
+
+        }
+
+        .style2 {
+            background-color: rgb(155, 187, 89);
+        }
+
+        .style1 {
+            background-color: rgb(59, 129, 189);
+            box-shadow: 1px 1px black;
+        }
+    </style>
+</body>
+
+</html>
