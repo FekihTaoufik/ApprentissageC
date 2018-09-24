@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- http://www.i3s.unice.fr/~tettaman/Classes/WebL3MIAGE/TP1.html -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,7 +11,8 @@
 </head>
 
 <body>
-    <table>
+    <img src="./resultat.PNG" height="500" alt="">
+    <table style="float:right;">
         <thead>
             <tr>
                 <th rowspan="4"></th>
@@ -69,7 +71,7 @@
             </tr>
             <tr>
                 <td rowspan="2" class="style1">DUT</td>
-                <td class="style1">DUT IG</td>
+                <td class="style1 transparency">DUT IG</td>
                 <td rowspan="2" class="style1">Cycle Préparatoire</td>
             </tr>
             <tr>
@@ -80,13 +82,9 @@
                 <td colspan="4" class="style1">BAC</td>
             </tr>
         </tbody>
-        <caption style="caption-side: bottom;">tableau des étudies en info à l'UNS</caption>
+        <caption>tableau des étudies en info à l'UNS</caption>
     </table>
     <style>
-        body {
-            font-family: 'Open sans';
-        }
-
         table td,
         table th {
             padding: 3px;
@@ -117,22 +115,32 @@
         .style3 {
             border-radius: .5em;
             color: white;
-            border: 2px solid rgb(79, 129, 189);
             text-align: center;
+            box-shadow: 1px 1px 0px black;
         }
 
         .style3 {
-            background-color: rgb(128, 100, 161);
-
+            background-color: rgb(128, 100, 162);
+            border: 2px outset rgb(59, 97, 142);
         }
 
         .style2 {
+            border: 2px outset rgb(147, 178, 84);
             background-color: rgb(155, 187, 89);
         }
 
         .style1 {
+            border: 2px outset rgb(59, 97, 142);
             background-color: rgb(59, 129, 189);
-            box-shadow: 1px 1px black;
+        }
+
+        .transparency {
+            opacity: .5;
+        }
+
+        table caption {
+            caption-side: bottom;
+            font-weight: 600;
         }
     </style>
 </body>

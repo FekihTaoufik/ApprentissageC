@@ -4,6 +4,10 @@
 #include <unistd.h>
 
 #define TEMPS_PRODUCTION 1
+
+// On donne acces a la fonction capacite_max_entrepot en invoquant sa signature
+int capacite_max_entrepot();
+
 void *activite_usine(void *pdata)
 {
 
