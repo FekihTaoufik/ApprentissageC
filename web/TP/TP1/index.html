@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TP1</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <img src="./resultat.PNG" height="500" alt="">
+    <img src="./resultat.PNG" height="500">
     <table style="float:right;">
         <thead>
             <tr>
                 <th rowspan="4"></th>
-                <th rowspan="4" class="style1">IUT</th>
+                <th rowspan="4" style="padding:0 50px;" class="style1">IUT</th>
             </tr>
             <tr>
                 <td colspan="2" class="center bold style1">UFR Sciences</td>
@@ -34,39 +34,41 @@
         <tbody>
             <tr>
                 <td class="invisible"></td>
-                <td class="empty"></td>
-                <td class="empty"></td>
-                <td class="empty"></td>
+                <td class="empty no-right-border"></td>
+                <td class="empty no-right-border"></td>
+                <td class="empty no-right-border"></td>
                 <td class="empty"></td>
             </tr>
             <tr>
-                <td rowspan="3" class="style1">BAC +8</td>
-                <td class="empty"></td>
+                <td rowspan="3" class="style1 align-top">BAC +8</td>
+                <td class="empty no-top-border"></td>
                 <td colspan="3" rowspan="3" class="style3">Doctorat / ED-STIC</td>
             </tr>
             <tr>
-                <td class="empty"></td>
+                <td class="empty no-top-border"></td>
             </tr>
 
             <tr>
-                <td class="empty"></td>
+                <td class="empty no-top-border"></td>
             </tr>
             <tr>
-                <td rowspan="2" class="style1">BAC +5</td>
-                <td class="empty"></td>
+                <td rowspan="2" class="style1 align-top">BAC +5</td>
+                <td class="empty no-top-border"></td>
                 <td rowspan="2" class="style2">Master Miage</td>
                 <td rowspan="2" class="style2">Master Informatique</td>
                 <td rowspan="4" class="style2">Ingénieur Informatique</td>
             </tr>
             <tr>
-                <td class="empty"></td>
+                <td class="empty no-top-border"></td>
             </tr>
             <tr>
-                <td rowspan="4" class="style1">BAC +3</td>
+                <td rowspan="4" class="style1 align-top">BAC +3</td>
             </tr>
             <tr>
                 <td class="style1">LPRO</td>
-                <td class="style1">parcours Miage</td>
+                <td class="style1" style="position:relative;">parcours Miage <div class="joint-block"></div>
+                    <img class="etoile" src="./etoile.png" alt="Etoile">
+                </td>
                 <td rowspan="3" class="style1">Licence Informatique</td>
             </tr>
             <tr>
@@ -75,7 +77,7 @@
                 <td rowspan="2" class="style1">Cycle Préparatoire</td>
             </tr>
             <tr>
-                <td class="empty exception"></td>
+                <td class="empty no-top-border exception"></td>
             </tr>
             <tr>
                 <td class="invisible"></td>
@@ -84,65 +86,6 @@
         </tbody>
         <caption>tableau des étudies en info à l'UNS</caption>
     </table>
-    <style>
-        table td,
-        table th {
-            padding: 3px;
-        }
-
-        .bold {
-            font-weight: bold;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .invisible {
-            border: none;
-        }
-
-        .empty.exception {
-            border-top: 0px;
-        }
-
-        .empty {
-            border: 1px dashed black;
-        }
-
-        .style1,
-        .style2,
-        .style3 {
-            border-radius: .5em;
-            color: white;
-            text-align: center;
-            box-shadow: 1px 1px 0px black;
-        }
-
-        .style3 {
-            background-color: rgb(128, 100, 162);
-            border: 2px outset rgb(59, 97, 142);
-        }
-
-        .style2 {
-            border: 2px outset rgb(147, 178, 84);
-            background-color: rgb(155, 187, 89);
-        }
-
-        .style1 {
-            border: 2px outset rgb(59, 97, 142);
-            background-color: rgb(59, 129, 189);
-        }
-
-        .transparency {
-            opacity: .5;
-        }
-
-        table caption {
-            caption-side: bottom;
-            font-weight: 600;
-        }
-    </style>
 </body>
 
 </html>
