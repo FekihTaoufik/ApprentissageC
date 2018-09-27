@@ -45,14 +45,25 @@ char** sh_split_line (char* line) { //Parse l'input en utilisant strtok() pour f
 /*======================================================*/
 int sh_execute (char ** args) {
 	int exit_cond;
+	int i;
 	pid_t pid;
 	pid = fork();
+	char *controlParental;
+	const char *forbiddenWords[] = {"mp3", "mp4", "youtube", "avi"};
 	if(pid == -1){
 		perror ("Erreur fork");
 		exit (1);
 	} 
 	if(pid == 0) {
-		//printf ("\nPid du premier fils = %d", getpid());
+		for(i = 0; i < sizeof(forbiddenWords); i++){
+			controlParental = strstr(args[0], forbiddenWords[i]);
+			if(controlParental != NULL){
+				char testOne = "Control parental - Commande interdite ";
+				char testTwo = " HELLO";
+				perror("PLz fuckin work");
+				exit(1);
+			}
+		}
 		if(execvp(args[0], args) == -1)
 			perror("Erreur exec ");
 			exit(1);
@@ -77,11 +88,9 @@ void sh_loop (void) {
 		fflush (stdout); //Nettoyer le buffer de sortie
 		line = sh_read_line(); //Lire la ligne
 		args = sh_split_line(line); //Parse la ligne
-		printf("BLALALALALALA");
 		status = sh_execute (args); //Executer la ligne
 		/*sh_free(line); */
 		/*sh_free(args); */
-printf("BLALALALALALA");
 	} while (status);
 }
 
