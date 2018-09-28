@@ -1,29 +1,25 @@
 #include <sys/types.h>
-#include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 int main (int argc , char *argv[]){
-pid_t pids[10];
-int exit_cond , i,n = 10;
-
-for (i = 0; i < n; ++i) {
-  if ((pids[i] = fork()) < 0) {
-    perror("fork");
-    abort();
-  } else if (pids[i] == 0) {
-    printf("Je suis le fils %d et mon pere est %d\n",getpid(),getppid());
-    sleep(30);
-    exit(0);
+  int pid ;
+  switch (pid = fork()){
+    case -1 : 
+      perror("Erreur du fork");
+      exit(1);
+    case 0:
+      printf("Je suis le fils : PID %d et le PID de mon pere est %d\n",getpid(),getppid());
+      printf("Je suis le fils et je meurs : PID %d\n",getpid());
+      break;
+    default : 
+      printf("\nJe suis le pere : PID %d\n",getpid());
+      printf("Qu'est devenu mon fils %d\n",pid);
+      printf("Vous avez 30 sec pour lancer un ""pis -e -f"" et constater qu'il est zombi !\n");
+      sleep(40);
+      printf("Je suis le pere, et je meurs : PID %d\n",getpid());
   }
-}
-
-int status;
-pid_t pid;
-while (n > 0) {
-  pid = wait(&status);
-  printf("Mon fils %d a terminé avec le résultat %d\n",pid,status);
-  --n;
-}
+  printf("\n");
+  exit(0);
 }
 
