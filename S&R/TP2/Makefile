@@ -1,6 +1,6 @@
 all : main
 
-main : fork0.c
-		gcc fork0.c -o main
+main : primitiveWait.c
+		gcc primitiveWait.c -o main
 		./main
 	
