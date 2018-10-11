@@ -1,4 +1,4 @@
-// ============== LETSGO ================= //
+// ============== DEBUT ================= //
 
 var canvas = document.querySelector('.canvas'),
 	context = canvas.getContext('2d');
@@ -6,7 +6,7 @@ context.canvas.width = window.innerWidth;
 context.canvas.height = window.innerHeight;
 
 
-//MOUSE
+//SOURIS
 
 var mouse = {
 	x: 680,
@@ -22,7 +22,7 @@ var iter = false;
 var ref = {};
 var refTail = {};
 
-// =============== STARCREATION =============== //
+// =============== CREATION DE L'ETOILE =============== //
 
 var coords = [];
 
@@ -63,7 +63,7 @@ function star() {
 
 }
 
-// ============== DRAW NYAN ================ //
+// ============== DESSIN DU CHAT ================ //
 var tails = [];
 
 function create_tail() {
@@ -94,7 +94,7 @@ function draw() {
 		tail.y += 0;
 		tail.width++;
 
-		// ============== NYANCATTAIL ================= //
+		// ============== QUEUE ================= //
 
 		context.beginPath();
 
@@ -136,21 +136,21 @@ window.addEventListener('click', function() {
 })
 
 function nyan() {
-	// ==============    NYANCAT    ================= //
+	// ==============    CHAT    ================= //
 
-	//back
+	//ARRIERE
 
 	context.beginPath();
 	context.fillStyle = '#ffcc99';
 	context.fillRect(ref.x - 10, ref.y - 55, 150, 120);
 
-	//top
+	//HAUT
 
 	context.fillStyle = '#ff99ff';
 	context.fillRect(ref.x, ref.y - 45, 130, 100);
 
 
-	//border
+	//BORDURE
 
 	context.fillStyle = 'black';
 	context.fillRect(ref.x - 20, ref.y - 45, 10, 110);
@@ -162,7 +162,7 @@ function nyan() {
 	context.fillRect(ref.x + 140, ref.y - 45, 10, 110);
 	context.fillRect(ref.x - 10, ref.y + 65, 10, 10);
 
-	//marmelade
+	//POINTS ROSE SUR LE CORP
 
 	context.fillStyle = '#ff3399';
 	context.fillRect(ref.x + 15, ref.y - 25, 10, 10);
@@ -177,26 +177,26 @@ function nyan() {
 	context.fillRect(ref.x + 40, ref.y - 40, 10, 10);
 	context.fillRect(ref.x + 45, ref.y + 40, 10, 10);
 
-	//eraser_topleft
+	//RETOUCHE
 
 	context.fillStyle = '#ffcc99';
 	context.fillRect(ref.x, ref.y - 45, 10, 10);
 	context.fillRect(ref.x, ref.y - 35, 10, 10);
 	context.fillRect(ref.x + 10, ref.y - 45, 10, 10);
 
-	//eraser_bottomleft
+	//RETOUCHE
 
 	context.fillRect(ref.x, ref.y + 35, 10, 10);
 	context.fillRect(ref.x + 10, ref.y + 45, 10, 10);
 	context.fillRect(ref.x, ref.y + 45, 10, 10);
 
-	//eraser_topright
+	//RETOUCHE
 
 	context.fillRect(ref.x + 120, ref.y - 45, 10, 10);
 	context.fillRect(ref.x + 120, ref.y - 35, 10, 10);
 	context.fillRect(ref.x + 110, ref.y - 45, 10, 10);
 
-	//PAW FORWARD RIGHT
+	//PATE AVANT DROIT
 
 	context.fillStyle = '#a6a6a6';
 	context.fillRect(ref.x + 80, ref.y + 75, 20, 10);
@@ -206,7 +206,7 @@ function nyan() {
 	context.fillRect(ref.x + 70, ref.y + 75, 10, 20);
 	context.fillRect(ref.x + 100, ref.y + 75, 10, 10);
 
-	// PAW FORWARD LEFT 
+	// PATE AVANT GAUCHE 
 
 	context.fillStyle = '#a6a6a6';
 	context.fillRect(ref.x + 130, ref.y + 75, 20, 10);
@@ -217,7 +217,7 @@ function nyan() {
 	context.fillRect(ref.x + 120, ref.y + 75, 10, 10);
 	context.fillRect(ref.x + 150, ref.y + 65, 10, 30);
 
-	// PAW BACK LEFT
+	// PATE BACK GAUCHE
 
 	context.fillStyle = '#a6a6a6';
 	context.fillRect(ref.x + 20, ref.y + 75, 20, 10);
@@ -227,7 +227,7 @@ function nyan() {
 	context.fillRect(ref.x + 10, ref.y + 75, 10, 20);
 	context.fillRect(ref.x + 40, ref.y + 75, 10, 10);
 
-	// PAW BACK RIGHT
+	// PATE BACK DROIT
 
 	context.fillStyle = '#a6a6a6';
 	context.fillRect(ref.x - 40, ref.y + 65, 30, 10);
@@ -241,7 +241,7 @@ function nyan() {
 	context.fillRect(ref.x - 40, ref.y + 55, 10, 10);
 	context.fillRect(ref.x - 30, ref.y + 45, 10, 10);
 
-	//TAIL
+	//QUEUE
 
 	context.fillStyle = '#a6a6a6';
 	context.fillRect(ref.x - 40, ref.y - 5, 20, 20);
@@ -258,7 +258,7 @@ function nyan() {
 	context.fillRect(ref.x - 50, ref.y - 25, 10, 10);
 
 
-	// HEAD STROKE
+	// TETE BORDURE
 
 	context.fillRect(ref.x + 100, ref.y - 25, 40, 10);
 	context.fillRect(ref.x + 90, ref.y - 35, 10, 10);
@@ -278,7 +278,7 @@ function nyan() {
 	context.fillRect(ref.x + 60, ref.y + 45, 10, 10);
 
 
-	// HEAD FILL
+	// TETE REMPLISSAGE
 
 	context.fillStyle = '#999999';
 	context.fillRect(ref.x + 70, ref.y - 5, 100, 60);
@@ -300,7 +300,7 @@ function nyan() {
 	context.fillRect(ref.x + 50, ref.y - 15, 140, 10);
 	context.fillRect(ref.x + 140, ref.y - 25, 10, 10);
 
-	// HEAD CONTENT
+	// TETE
 
 	context.fillStyle = 'black';
 	context.fillRect(ref.x + 150, ref.y - 5, 20, 20);
@@ -321,23 +321,25 @@ function nyan() {
 
 }
 
-// reference x : 635
-// reference y : 415 
-
 function text() {
-	var text = 'L3 MIAGE - NYAN CAT';
-
+	var text = 'FEKIH - L3 MIAGE - CHAT NYAN';
 	context.fillStyle = 'hsl(' + (Math.random() * 360) + ',100%,50%)';
 	context.font = '60px Arial';
 	context.textAlign = 'center';
 	context.textBaseLine = 'top';
 	context.fillText(text, context.canvas.width / 2, 150);
-	context.lineWidth = 2;
-	context.strokeStyle = 'black';
-	context.strokeText(text, context.canvas.width / 2, 150);
+}
+function text_description() {
+	var text = 'Cliquez pour prendre le controle du chat';
+	context.fillStyle = 'hsl(' + (Math.random() * 360) + ',100%,50%)';
+	context.font = '30px Arial';
+	context.textAlign = 'center';
+	context.textBaseLine = 'top';
+	context.fillText(text, context.canvas.width / 2, 200);
+
 }
 
-// ============== LOOP ================= //
+// ============== BOUCLE ================= //
 
 
 function loop() {
@@ -348,6 +350,7 @@ function loop() {
 	draw();
 	nyan();
 	text();
+	text_description();
 	remove_tail();
 	delete_star();
 
