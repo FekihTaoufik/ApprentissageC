@@ -9,14 +9,14 @@ void eliminer_zombie(int sig){
     int exit_cond;
     pid_t pid;
     printf("Attente de la terminaison du fils...\n");
-    pid = wait ($exit_cond);
+    pid = wait (&exit_cond);
     #if 0
         while(waitpid (-1,&exit_cond,WNOHANG));
     #endif
         if(WIFEXITED(exit_cond))
             printf("Le fils %d s'est termine correctement : %d\n",pid,WEXITSTATUS(exit_cond));
         else
-            printf("Le fils %d s'est mal termine : %d\n",pid,,WTERMSIG(exit_cond));    
+            printf("Le fils %d s'est mal termine : %d\n",pid,WTERMSIG(exit_cond));    
 }
 int main (int argc,char *argv[]){
     struct sigaction action ;
