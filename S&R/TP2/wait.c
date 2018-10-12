@@ -7,8 +7,8 @@
 int main (int argc , char *argv[]){
 pid_t pids[10];
 int i;
-int n = 10;
-
+int n = 5;
+printf("Le nombre de fils a creer : %d\n",n);
 for (i = 0; i < n; ++i) {
   if ((pids[i] = fork()) < 0) {
     perror("fork");

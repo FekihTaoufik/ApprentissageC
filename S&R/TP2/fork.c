@@ -1,16 +1,10 @@
-/* 
-* PROGRAM fork1 . c
-* This program runs two processes , a parent and a child .
-* Note that printf () is used in this program for simplicity . */
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #define MAX_COUNT 200 
 void ChildProcess(void);
-/* child process prototype */
 void ParentProcess(void);
-/* parent process prototype */
 int main(void)
 {
     pid_t pid;

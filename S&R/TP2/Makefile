@@ -1,6 +1,6 @@
 all : main
 
-main : sigchild.c
-		gcc sigchild.c -o main
+main : fork.c
+		gcc fork.c -o main
 		./main
 	
