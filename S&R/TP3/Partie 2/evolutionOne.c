@@ -58,8 +58,6 @@ int sh_execute (char ** args) {
 		for(i = 0; i < sizeof(forbiddenWords); i++){
 			controlParental = strstr(args[0], forbiddenWords[i]);
 			if(controlParental != NULL){
-				char testOne = "Control parental - Commande interdite ";
-				char testTwo = " HELLO";
 				perror("PLz fuckin work");
 				exit(1);
 			}
