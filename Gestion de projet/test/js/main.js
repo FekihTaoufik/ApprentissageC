@@ -1,0 +1,3 @@
+hello = require('./objet');
+
+hello();

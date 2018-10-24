@@ -19,6 +19,13 @@ On sait afficher de manière textuelle les composantes d'un vecteur
 Proposer une classe Vecteur2D qui réalise toutes les opérations
  décrites ci-dessus.
  * */
+		
+		Vecteur v1 = new Vecteur(1,2);
+		Vecteur v2 = new Vecteur(3,3);
+		
+		System.out.println(v1.produitScalaire(v2));
+		
+		
 	}
 
 }

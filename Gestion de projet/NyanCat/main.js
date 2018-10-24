@@ -1,5 +1,6 @@
 // ============== DEBUT ================= //
-
+import {create_obstacle} from './js/Obstacle';
+create_obstacle();
 var canvas = document.querySelector('.canvas'),
 	context = canvas.getContext('2d');
 context.canvas.width = window.innerWidth;

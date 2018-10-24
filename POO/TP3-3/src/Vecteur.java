@@ -31,8 +31,6 @@ public class Vecteur {
 		
 	}
 	
-	
-	
 	Vecteur multiplierPar(double k) throws Exception {
 		int compo[] = Arrays.copyOf(this.composants, this.composants.length);
 		for(int i=0;i<compo.length;i++)
@@ -41,19 +39,29 @@ public class Vecteur {
 	}
 	Vecteur transposer() throws Exception {
 		int compos[] = Arrays.copyOf(this.composants, this.composants.length);
-		for(int i = 0; i < this.composants.length / 2; i++)
-		{
-			compos[i] = this.composants[this.composants.length - i - 1];
-
+		int temp;
+		for(int i = 0; i < this.composants.length / 2; i++) {
+			temp = compos[i];
+			compos[i] = compos[this.composants.length - i -1];
+			compos[compos.length - i -1] =temp;
 		}
 		return new Vecteur(compos);
 	}
-	Vecteur additionner(Vecteur v) {
-		int tailleMin = this.composants.length>=v.getComposants().length?v.getComposants().length:this.composants.length;
-		int comp[tailleMin];
-		for(int i =0 ; i<tailleMin;i++)
-			comp[i]=v.getComposants()[i]+this.composants[i];
-		return new Vecteur(comp);
+	Vecteur additionner(Vecteur v) throws Exception {
+		Vecteur vTemp;
+		int compos[];
+		if(this.composants.length>=v.getComposants().length) {
+			compos = Arrays.copyOf(this.composants, this.composants.length);
+			vTemp = new Vecteur(this.composants.length,v.getComposants());
+		}else {
+			compos = Arrays.copyOf(v.getComposants(), v.getComposants().length);
+			vTemp = new Vecteur(v.getComposants().length,this.composants);
+		}
+			for( int i =0; i<compos.length;i++) 
+				compos[i] += vTemp.getComposants()[i];
+			
+				
+		return new Vecteur(compos);
 	}
 	double produitScalaire(Vecteur v) {
 		int p = 0 ;
