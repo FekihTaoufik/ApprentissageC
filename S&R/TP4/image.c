@@ -1,6 +1,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
+ #include <ctype.h>
  #include "image.h"
 /*
 RAPPEL ****************
@@ -31,11 +32,12 @@ image *lecture_image(FILE *f){
     int i_comms=0;
     int i_pix=0;
     image *m = malloc(sizeof(image));
-    while (fgets(line, sizeof(line), f)) { 
+    while (fgets(line, sizeof(line), f) != NULL) { 
         // on part lire ligne par ligne le fichier
-        
+        printf("");
         if(i==0){
             printf("Type : Nombre Magique | %s\n", line); 
+<<<<<<< HEAD
             strncpy(m->nm, line,5);
         }else if(line[0]=='#'){
             printf("Type : Commentaire | %s\n", line); 
@@ -48,11 +50,27 @@ image *lecture_image(FILE *f){
             m->nc=atoi(trim(line));
         }else {
             printf("Type : PIXEL |%s(%s)\n", line,trim(line)); 
+=======
+            strcpy(m->nm, line);
+        }
+        else if(line[0]=='#'){
+            printf("Type : Commentaire | %s\n", line); 
+            strcpy(&(m->comments[i_comms]),line);
+            i_comms++;
+
+        }else if (strstr(trim(line), " ")){
+            printf("Type : DIMENSIONS |%s (%s)(%d)\n", line,trim(line),atoi(line)); 
+            m->nl=atoi(trim(line));
+            m->nc=atoi(trim(line));
+        }else {
+            printf("%d|", atoi(trim(line))); 
+>>>>>>> 2d441681599897d5e3617feb5cdcb5f5bc89628d
             m->pixels[i_pix]=atoi(trim(line));
             i_pix++;
         }
         i++;
     }
+    m->ng=255;
     return m;
   
 };
