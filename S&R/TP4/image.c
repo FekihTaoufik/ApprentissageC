@@ -23,6 +23,7 @@ char *trim(char *s) {
     for (ptr = s + strlen(s) - 1; (ptr >= s) && isspace(*ptr); --ptr);
     ptr[1] = '\0';
     return s;
+    
 }
 image *lecture_image(FILE *f){
     char line[256];
@@ -34,19 +35,19 @@ image *lecture_image(FILE *f){
         // on part lire ligne par ligne le fichier
         
         if(i==0){
-            //printf("Type : Nombre Magique | %s\n", line); 
+            printf("Type : Nombre Magique | %s\n", line); 
             strncpy(m->nm, line,5);
         }else if(line[0]=='#'){
-            //printf("Type : Commentaire | %s\n", line); 
+            printf("Type : Commentaire | %s\n", line); 
             m->comments[i_comms] = line;
             i_comms++;
 
         }else if (strstr(trim(line), " ")){
-            //printf("Type : DIMENSIONS |%s (%s)(%d)\n", line,trim(line)); 
+            printf("Type : DIMENSIONS |%s (%s)(%d)\n", line,trim(line)); 
             m->nl=atoi(trim(line));
             m->nc=atoi(trim(line));
         }else {
-            //printf("Type : PIXEL |%s(%s)\n", line,trim(line)); 
+            printf("Type : PIXEL |%s(%s)\n", line,trim(line)); 
             m->pixels[i_pix]=atoi(trim(line));
             i_pix++;
         }
