@@ -10,10 +10,10 @@ int main(int argc, char *argv[]){
   FILE *f;
   image *I;
   
-  if (argc < 3){
-    usage();
-    return -1;
-  }
+  // if (argc < 3){
+  //   usage();
+  //   return -1;
+  // }
 
   /* Lecture de l'image */
   printf("nom du fichier : %s\n",argv[1]);
@@ -21,7 +21,15 @@ int main(int argc, char *argv[]){
   if (f == NULL)
     fprintf(stderr,"Erreur d'ouverture du fichier initial \n");
   I = lecture_image(f);
-  printf("\n N magique => %s",I->nm);
+
+    printf("\n colonnes %d | lignes : %d",I->nc,I->nl);
+
+  // for(int i = 0; i < 100; i++)
+  // {
+  //   printf("%d ",I->pixels[i]);
+  // }
+  
+
   fclose(f);
 
   /* Traitement de l'image */
