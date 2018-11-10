@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#ifndef IMAGEH
+
+
 #define IMAGEH
 
 #define NMAX 3000
@@ -16,19 +18,11 @@ typedef struct {
                                    /* Par contre le 2D est inutile */
 } image;
 
-/* Prototypes */
-image *lecture_image(FILE *f);
-void ecriture_image(FILE *f, image *);
-void inverse_image(image *); /* Im[i] = MaxLevel - Im[i] */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-void image_NB(image *img,int seuil);
-#ifdef __cplusplus
+void image_NB(image *img,int seuil){
+for(int i=0;i<(img->nl * img->nc);i++){
+    if(img->pixels[i]>seuil)
+        img->pixels[i] = img->ng;
+    else if (img->pixels[i]!=seuil)
+        img->pixels[i] = 0;
+   }
 }
-#endif
-
-
-
-#endif

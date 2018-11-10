@@ -50,13 +50,14 @@ image *lecture_image(FILE *f){
     }
     return m;
   
-};
+}
 void inverse_image(image *img){
     
    for(int i=0;i<(img->nl * img->nc);i++){
      img->pixels[i] = img->ng - img->pixels[i];
    }
 }
+
 
 void ecriture_image(FILE *f,image *img){
     // Le nombre magique
