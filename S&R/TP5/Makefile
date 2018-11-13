@@ -12,9 +12,10 @@ id3_frame.o : id3_frame.c id3_frame.h
 
 id3_tagheader.o : id3_tagheader.c id3_tagheader.h
 	gcc -c id3_tagheader.c	
-
 clean:
 	rm *.o id3
 
 run :
-	./id3 track1.mp3
+	./id3 ./MP3/track1.mp3
+reload :
+	make all && make run
