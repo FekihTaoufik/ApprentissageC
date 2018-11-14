@@ -22,7 +22,7 @@
 /*============================================*/
 /* Analyse d'un header de frame :
    => On recupere les infos via le parametre fh
-   => qui  doit avoir ete allouée
+   => qui  doit avoir ete allouï¿½e
 
    On suppose la frame non corrompue => elle est conforme
    dans le fichier ! 
@@ -35,12 +35,12 @@ int id3_read_frame_header(int fd, frame_header *fh, int tagsize){
      On a besoin de tagsize pour sauter le padding si des fois ce
      n'est pas une frame ?
 
-     Rend la meme information que read(2) mais adapté au "frame header" :
+     Rend la meme information que read(2) mais adaptï¿½ au "frame header" :
     -1 : erreur pendant la lecture du header
      0 : plus rien a lire 
      sinon la taille du frame header.
    */
-  int nb_alire; /* Nb d'octets à lire */
+  int nb_alire; /* Nb d'octets ï¿½ lire */
   int nb_lu;
 
   /*=== Lecture de l'ID -----------------------------------*/ 
@@ -58,9 +58,9 @@ int id3_read_frame_header(int fd, frame_header *fh, int tagsize){
   nb_lu = read_error(fd, &(fh->id[1]), nb_alire, "Read Frame ID (3)");
   if (nb_lu != nb_alire) return nb_lu;
    
-#if DEBUG
-  printf_buff(fh->id, nb_alire+1, "%c", "ID");
-#endif
+  #if DEBUG
+    printf_buff(fh->id, nb_alire+1, "%c", "ID");
+  #endif
   
   /*=== Lecture de la taille de la frame "POST HEADER" ---*/ 
   nb_alire = 4;
@@ -72,22 +72,22 @@ int id3_read_frame_header(int fd, frame_header *fh, int tagsize){
   fh->tailleframe = decode_taille(fh->size);
   //  fh->tailleframe = htonl(*((int *)fh->size));
 
-#if DEBUG
-  printf_buff(fh->size, nb_alire, "%x", "SIZE");
-  printf("\n\tSIZE  : %d",fh->tailleframe);
-  /* printf("\n\tENDIANESS PB! = %d",(int *)(fh->size));*/
-#endif
+  #if DEBUG
+    printf_buff(fh->size, nb_alire, "%x", "SIZE");
+    printf("\n\tSIZE  : %d",fh->tailleframe);
+    /* printf("\n\tENDIANESS PB! = %d",(int *)(fh->size));*/
+  #endif
   
   /*=== Lecture des flags --------------------------------*/ 
   nb_alire = 2;  
   nb_lu = read_error(fd, fh->flags, nb_alire, "Read Frame Flags");
   if (nb_lu != nb_alire) return nb_lu;
 
-#if DEBUG
-  printf_buff(fh->flags, nb_alire, "%x","\tFLAGS");
-#endif
+  #if DEBUG
+    printf_buff(fh->flags, nb_alire, "%x","\tFLAGS");
+  #endif
 
-  return 10; /* Si on en est là c'est que c'est OK */
+  return 10; /* Si on en est lï¿½ c'est que c'est OK */
 }
 
 
@@ -98,7 +98,7 @@ int id3_read_frame_header(int fd, frame_header *fh, int tagsize){
  */
 
 int id3_read_frame_body(int fd, frame_header *fh){
-  int nb_alire; /* Nb d'octets à lire */
+  int nb_alire; /* Nb d'octets ï¿½ lire */
   int nb_lu;
 
   /* Pour info ... fh->id[0] contient la premiere lettre
@@ -121,7 +121,6 @@ int id3_read_frame(int fd, int tagsize){
 
   frame_header fh; /* On recupere le frame header*/
   int nb_lu;
-  
   /* Analyse du header de la frame */
   nb_lu = id3_read_frame_header(fd, &fh, tagsize);
   if (nb_lu != 10)
@@ -134,3 +133,4 @@ int id3_read_frame(int fd, int tagsize){
 }
 
 /*============================================*/
+
