@@ -1,7 +1,11 @@
 package fr.unice.abr;
 
-public class Arbre {
+import java.util.Comparator;
+
+public class Arbre{
 	public static Noeud n_racine;
+	public Comparator<Integer> C;
+	
 	public Arbre(int val) {
 		n_racine = new Noeud(val);
 	}
@@ -12,6 +16,8 @@ public class Arbre {
 		Noeud old = null;
 		while(true){
 			old = courant;
+			System.out.println("["+courant.get_valeur()+"]");
+			//if(C.compare(val,courant.get_valeur())<=-1) {
 			if(val<courant.get_valeur()){				
 				courant = courant.get_n_gauche();
 				if(courant==null){
@@ -64,6 +70,18 @@ public class Arbre {
 	
 	public void parcourir() {
 		
+	}
+
+	@Override
+	public int compareTo(Noeud o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int compare(Noeud o1, Noeud o2) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
