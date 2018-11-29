@@ -7,6 +7,7 @@
         "unistd.h": "c",
         "wait.h": "c",
         "image.h": "c",
-        "id3_tagheader.h": "c"
+        "id3_tagheader.h": "c",
+        "stdlib.h": "c"
     }
 }

@@ -38,10 +38,10 @@ int mp3_get_frame_from_id(int fd , char * id,char * contenu){
     if (nb_lu != 10)
       return nb_lu;
     if(strcmp(th.tag,id)){
-      contenu =  id3_read_frame_body(fd, &fh);
+      int nb_alire = id3_read_frame_body(fd,&fh);
       return 1;
     }
-  } while ( nb_lu > 0 && !);
+  } while ( nb_lu > 0);
 
   /* Pour verifier ou on est a la fin de la lecture du tag ? -*/
   off_t fintag = lseek(fd, 0, SEEK_CUR);

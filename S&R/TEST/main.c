@@ -1,7 +1,12 @@
-#include "util.h"
- 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 int main(void)
 {
-    UTIL_says_hello();
+    char * [1000] s ;
+FILE *f = fopen('filename', "r");
+s = read(f,1,1);
+    printf("%s",s);
     return 0;
 }
