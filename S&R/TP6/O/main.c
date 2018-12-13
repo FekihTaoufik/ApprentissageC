@@ -9,20 +9,21 @@
 #include "queue.h"
 
 // #define MAX 1000000      			// Modify this to change the number of requests
-#define SIM_TIME   1.0e2        // Simulation time
+// #define SIM_TIME   1.0e2        // Simulation time
 
 // #define ARR_TIME   1.25         // Mean time between arrivals
 // #define SERV_TIME  1.00         // Mean service time
+
 #define RSEED 1234   			// Modify this to change seed of the random number generator function
 
 #define FILENAME "mm1.csv" 		//Change the filename here
 
 int main( int argc, char *argv[])
 {
-    int line=0; // Etat de la ligne (lien de sortie): 1 si'l y un paquet en train de se transmetre.
-    int callerID=0,localCallerID,departures=0;
+    int line = 0; // Etat de la ligne (lien de sortie): 1 si'l y un paquet en train de se transmetre.
+    int callerID = 0, localCallerID, departures = 0;
     
-    double prevTime = 0.0,newTime = 0.0,busyTime = 0.0,serviceTime=0.0,waitingTime = 0.0,residenceTime=0.0;
+    double prevTime = 0.0, newTime = 0.0, busyTime = 0.0, serviceTime=0.0, waitingTime = 0.0, residenceTime=0.0;
     node_t * fel = NULL;
     node_t * head = fel;
     
@@ -63,34 +64,38 @@ int main( int argc, char *argv[])
     srand(RSEED);
     
     insertEvent(&head,++callerID,'A',prevTime + expntl(ARR_TIME));
-    print_all(head,bhead);   // UNCOMMENT THIS TO VIEW THE FEL and the buffer
+    //print_all(head,bhead);   // UNCOMMENT THIS TO VIEW THE FEL and the buffer
     while(1) {
         // Pickup the next event in the list
         switch(head->event){
             case 'A':
-                // COMPLETEZ LE CODE
-                // Stop creating new arrivals after the conditions are met (Stopping criterion)
-               if(callerID < MAX) 		// Uncomment this to make use of the number of requests   
+                prevTime = head->time;
+                localCallerID = head->callerID;
+                popEvent(&head);
+                if(!line)
+                {
+                    serviceTime = expntl(SERV_TIME); //loi aléatoire
+                    newTime = prevTime + serviceTime;
+                    busyTime += serviceTime;
+                    residenceTime += serviceTime;
+                    insertEvent(&head, localCallerID, 'D', newTime);
+                    line = 1; //ligne occupé
+                }
+                else 
+                    insertEvent(&bhead,localCallerID,'A',prevTime);
+                if(callerID < MAX) // Uncomment this to make use of the number of requests
                     insertEvent(&head,++callerID,'A',prevTime + expntl(ARR_TIME));
-                else
-                    if(prevTime < SIM_TIME)		// Uncomment this to make use of the total simulation time
-                        insertEvent(&head,callerID,'D',prevTime + expntl(ARR_TIME));
-
-
-                printf("Arrival Event\n");  // UNCOMMENT THIS TO VIEW THE FEL and the buffer
-                print_all(head,bhead);		// UNCOMMENT THIS TO VIEW THE FEL and the buffer
                 break;
             case 'D':
                 departures++;
-                  // COMPLETEZ LE CODE
+                prevTime = head->time;
                 popEvent(&head);
-                // popBuffer(f,&head,&bhead, &busyTime,&residenceTime, &waitingTime,prevTime);
-                if(departures == MAX) 	// Uncomment this to make use of the number of requests
-                    // if(departures == callerID)	// Uncomment this to make use of the total simulation time
+                if(departures == MAX)  // Uncomment this to make use of the number of requests
                     goto Result;
-    
-                printf("Departure Event\n"); // UNCOMMENT THIS TO VIEW THE FEL and the buffer
-                print_all(head,bhead);		// UNCOMMENT THIS TO VIEW THE FEL and the buffer
+                if(bhead!=NULL)
+                    popBuffer(f, &head, &bhead, &busyTime, &residenceTime, &waitingTime, prevTime);
+                else
+                    line=0;
                 break;
         }
     }
@@ -103,12 +108,15 @@ Result:
     float mu = 1/SERV_TIME;
     float rho = SERV_TIME/ARR_TIME;
     float queueing_time =  rho/(mu-lambda);
+
     printf("**************************************STATISTICS*******************************\n");
     if(ARR_TIME < SERV_TIME)
-        printf("*   UNSTABLE:\tArrival rate is greater than service rate!!\n");
+        printf("*   UNSTABLE:\tArrival rate is greater than service rate!!                   *\n");
+    
     printf("*                        Results from M/M/1 simulation                        * \n");
     printf("*******************************************************************************\n");
     printf("* INPUTS:                                     \n");
+    printf("*  Vos entrées : MAX = %ld / lambda = %f / mu = %f\n", MAX, 1/ARR_TIME, 1/SERV_TIME);
     printf("*  Total simulated time     = %3.4f sec    \n", prevTime);
     printf("*  Mean time betw arrivals  = %lf sec      \n", ARR_TIME);
     printf("*  Mean service time        = %lf sec      \n", SERV_TIME);
@@ -123,5 +131,8 @@ Result:
     printf("*  Mean number in system    = %lf cust <--> THEORY:  %lf cust      \n", residenceTime/prevTime, lambda*(SERV_TIME+ queueing_time) );
     printf("*  Mean number in queue     = %lf cust <--> THEORY:  %lf cust      \n", (residenceTime-busyTime)/prevTime, lambda*queueing_time);
     printf("*******************************************************************************\n");
+    //ecriture des "mean residence time" recueilli
+    FILE *f_bis = fopen("residence_time.txt","a");
+    fprintf(f_bis, "\n\n%lf %lf\n",lambda/mu, residenceTime/departures);
     return 0;
 }
