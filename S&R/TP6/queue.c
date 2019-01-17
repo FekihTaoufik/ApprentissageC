@@ -13,13 +13,13 @@
 //******************************************************************************
 
 void print_all(node_t * head,node_t * bhead) {
-	printf("*******************************************************************************\n");
+	// printf("*******************************************************************************\n");
 	printf("FEL-");
 	print_list(head);
-	printf("***************************\n");
+	// printf("***************************\n");
 	printf("BUFFER-");
 	print_list(bhead);
-	printf("*******************************************************************************\n");
+	// printf("*******************************************************************************\n");
 }
 
 //******************************************************************************
@@ -30,16 +30,13 @@ void print_all(node_t * head,node_t * bhead) {
 double expntl(double x)
 {
 	double z;                     // Uniform random number from 0 to 1
-
 	// Pull a uniform RV (0 < z < 1)
-	do {
+	do 
+    {
 		z = ((double) rand() / RAND_MAX);
 	}
-	while ((z == 0) || (z == 1));
-
+    while ((z == 0) || (z == 1));
   // return -log(1.0 - (double) random() / (RAND_MAX + 1)) / x;
-
-
 	return(-x * log(z));
 }
 
@@ -94,19 +91,31 @@ int popBuffer(FILE *f,node_t ** head,node_t ** bhead,double *busyTime,double *re
     int retval = -1;
 
     // COMPLETEZ LE CODE
+    node_t * node_bis = NULL;
+    if (*bhead == NULL) 
+    {
+        return -1;
+    }
+    node_bis = (*bhead)->next;
+    retval = 1;
+    serviceTime = expntl(SERV_TIME);
+    newTime = currentTime+serviceTime;
+    //FIN 
     
     // Calculating statistics
     *busyTime += serviceTime;
-    wt = (currentTime - (*bhead)->time);
-    wt = (wt > 0)? wt : 0;
-    *waitingTime += wt;
-    *residenceTime += (serviceTime+wt);
+    wt=(currentTime-(*bhead)->time);
+    wt=(wt>0)?wt:0;
+    *waitingTime+=wt;
+    *residenceTime += (serviceTime + wt);
     // Write the data to file
-	fprintf(f, "%d,%lf,%lf,%lf\n",(*bhead)->callerID,(*bhead)->time,wt,(serviceTime+wt));
+	fprintf(f, "%d,%lf,%lf,%lf\n",(*bhead)->callerID, (*bhead)->time, wt, (serviceTime + wt) );
     
     // COMPLETEZ LE CODE
-    
+    insertEvent((head),(*bhead)->callerID,'D',newTime);
     free(*bhead);
+    *bhead = node_bis;
+    //FIN
     return retval;
 }
 
