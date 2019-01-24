@@ -19,12 +19,6 @@ int generate_sinusoid ( double frequency,
     
     int32_t k;
     int16_t wave;
-    /*Check for the violation of the Nyquist limit*/
- /*   if (frequency*2 >= SampleRate_d)
-    {
-        ret = -1;
-        goto error0;
-    }*/
     
     for(k = 0;
         k < FrameCount;
