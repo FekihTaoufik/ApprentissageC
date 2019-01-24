@@ -56,11 +56,11 @@ void generate_melody (int16_t *buffer_p){
     double melodie[16] ={264,297, 330, 352, 396, 440, 491, 528, 694, 660, 704, 792, 880, 990, 1056, 0};
 
     int16_t wave;
- i  int offset = 0;
+    int offset = 0;
    
     for (int o = 0; o < 16; ++o)
     {
-	    wave = generate_sinusoid ( mel[o],
+	    wave = generate_sinusoid ( melodie[o],
 	                             amplitude,
 	                           SAMPLE_RATE,
 	                           FrameCount/16,

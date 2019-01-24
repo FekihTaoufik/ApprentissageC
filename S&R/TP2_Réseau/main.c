@@ -12,7 +12,8 @@ int generate_sinusoid ( double frequency,
                        double amplitude,
                        int32_t SampleRate,
                        int32_t FrameCount,
-                       int16_t  *buffer_p)
+                       int16_t  *buffer_p,
+                       int offset)
 {
     int ret = 0;
     double SampleRate_d = (double)SampleRate;
@@ -25,7 +26,7 @@ int generate_sinusoid ( double frequency,
         k++)
     {
         wave = (int16_t) (amplitude * sin(k*frequency*2.0*M_PI/SampleRate_d));
-        buffer_p[k] = wave;
+        buffer_p[k+offset] = wave;
         
     }
     //test
@@ -35,6 +36,24 @@ error0:
     return ret;*/
 }
 
+int generate_melody (int16_t *buffer_p){
+    double amplitude = 1.0 * (double)SHRT_MAX;
+    int duration = 8;
+    int32_t FrameCount = duration * SAMPLE_RATE;
+
+    double notes[15] = {264, 297, 330,352, 396, 440, 495, 528, 594, 660, 704, 792, 880, 990, 1056};
+    
+    int nb_notes = 15;
+    int wave;
+    int offset = 0;
+   
+    for (int k = 0; k < nb_notes; k++)
+    {
+	    wave = generate_sinusoid(notes[k], amplitude, SAMPLE_RATE, FrameCount/nb_notes, buffer_p, offset);
+	    offset += FrameCount/nb_notes;
+    }
+    return 1;
+}
 
 // Write audio samples in a CSV file
 size_t write_CSV_file(char* filename, int32_t FrameCount,
@@ -96,11 +115,8 @@ int main(int argc, char *argv[])
     }
     
     /*Fill the buffer*/
-    ret = generate_sinusoid ( frequency,
-                             amplitude,
-                           SAMPLE_RATE,
-                           FrameCount,
-                           buffer_p);
+    ret = generate_melody(buffer_p);
+    // ret = generate_sinusoid ( frequency, amplitude, SAMPLE_RATE, FrameCount, buffer_p,0);
     if(ret < 0)
     {
         fprintf(stderr, "generate_sinusoid failed in main\n");
