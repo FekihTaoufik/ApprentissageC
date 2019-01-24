@@ -28,6 +28,7 @@ int generate_sinusoid ( double frequency,
         buffer_p[k] = wave;
         
     }
+    //test
     return ret;
 /*
 error0:
